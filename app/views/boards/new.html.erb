@@ -12,13 +12,15 @@
 <% end %>
 
 
-<%= form_with(model: @board, url: boards_path) do |form| %>
+<%= form_with model: @board do |form| %>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Create Board' %>
+    <%= form.submit 'Create Board', class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 block w-max" %>
   </div>
 <% end %>
+
+<%= link_to 'Back', boards_path, class:"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 block w-max" %>
