@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    render
+    @boards = current_user.boards
   end
 end
