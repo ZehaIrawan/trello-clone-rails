@@ -5,3 +5,5 @@
 [] dropdown for create board partial
   [] button
   [] stimulus controller
+  [] click away doesnt work
+  [] write documentation
