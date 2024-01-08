@@ -22,7 +22,7 @@
 
 <div class="grid grid-cols-4 gap-4 pt-12">
 <% @boards.each do |board| %>
-  <span class="block bg-blue-200 border py-8 px-4"><%= board.name %></span>
+      <%= link_to board.name,  board_path(board), class:"block bg-blue-200 border py-8 px-4"%>
 <% end %>
 </div>
 

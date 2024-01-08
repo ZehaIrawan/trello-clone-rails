@@ -7,7 +7,7 @@
   </div>
 
   <% @boards.each do |board| %>
-    <p><%= board.name %></p>
+    <%= link_to board.name,  board_path(board)%>
   <% end %>
 
 
