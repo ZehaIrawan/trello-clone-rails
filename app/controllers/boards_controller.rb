@@ -3,6 +3,9 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
+    @list = @board.lists
+
+    @board_lists = current_user.lists.where(board_id: @board.id)
   end
 
   def index
