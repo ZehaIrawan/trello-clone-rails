@@ -1,13 +1,6 @@
 
 <span> Board name : <%= @board.name %></span>
 
-<h3>Lists</h3>
-
-<% @board.lists.each do |list| %>
-  <div>
-    <span><%= list.name %></span>
-  </div>
-<% end %>
 
 <%= form_with(model: [@board, @list], url: board_lists_path(@board), method: :post) do |form| %>
   <div class="field">
@@ -19,6 +12,24 @@
     <%= form.submit 'Create List' %>
   </div>
 <% end %>
+
+<h3>Lists</h3>
+
+<div class="flex gap-3 h-full">
+<% @board.lists.each do |list| %>
+  <div class="border-2 border-red-400 w-64 h-full max-h-96 px-3 py-2 rounded-lg flex flex-col text-center">
+    <span><%= list.name %></span>
+
+    <div data-controller="add-card">
+        <input type="text" data-target="add-card.input" placeholder="Enter card name" class="hidden mb-2 px-2 py-1 border" />
+        <button data-action="click->add-card#toggle">Add Card</button>
+        <button data-action="click->add-card#close">X</button>
+      </div>
+  </div>
+<% end %>
+</div>
+
+
 
 
 
