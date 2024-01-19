@@ -2,20 +2,15 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="add-card"
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = ["cardNameInput", "closeButton"];
 
   toggle() {
-    // Toggle the visibility of the input field
-    this.inputTarget.classList.toggle("hidden");
-    if (!this.inputTarget.classList.contains("hidden")) {
-      // If the input field is visible, focus on it
-      this.inputTarget.focus();
-    }
-  }
+    this.cardNameInputTarget.classList.toggle("hidden");
+    this.closeButtonTarget.classList.toggle("hidden");
+    this.cardNameInputTarget.value = "";
 
-  close() {
-    // Hide the input field
-    this.inputTarget.classList.add("hidden");
-    this.inputTarget.value = "";
+    if (!this.cardNameInputTarget.classList.contains("hidden")) {
+      this.cardNameInputTarget.focus();
+    }
   }
 }
