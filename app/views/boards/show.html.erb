@@ -21,9 +21,17 @@
     <span><%= list.name %></span>
 
 <div data-controller="add-card">
-	<input type="text" data-add-card-target="cardNameInput" placeholder="Enter card name" class="hidden mb-2 px-2 py-1 border" />
-  <button data-action="click->add-card#toggle">Add Card</button>
-  <button data-add-card-target="closeButton" data-action="click->add-card#toggle" class="hidden">X</button>
+  <% @cards.each do |card|%>
+    <% if card.list_id == list.id %>
+        <span class="border border-red-400 w-full block"><%= card.title %></span>
+    <% end %>
+  <% end %>
+
+      <%= form_with(model: [list,list.cards.build], url:board_list_cards_path(@board,list), method: :post) do |form| %>
+        <%= form.text_field :title, data: { 'add-card-target': 'cardNameInput', 'add-card-action': 'input->add-card#validateInput' }, placeholder: 'Enter card name', class: 'mb-2 px-2 py-1 border' %>
+        <%= form.submit 'Add Card', data: { 'add-card-action': 'click->add-card#toggle', 'add-card-disable-with': 'Adding...' } %>
+        <button data-add-card-target="closeButton" data-action="click->add-card#toggle" class="hidden">X</button>
+      <% end %>
 </div>
   </div>
 <% end %>

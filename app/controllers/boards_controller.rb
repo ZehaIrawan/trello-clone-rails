@@ -6,6 +6,8 @@ class BoardsController < ApplicationController
     @list = @board.lists
 
     @board_lists = current_user.lists.where(board_id: @board.id)
+
+    @cards = Card.where(list_id: @list.ids)
   end
 
   def index
