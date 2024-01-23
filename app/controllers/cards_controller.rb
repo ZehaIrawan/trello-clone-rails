@@ -4,11 +4,10 @@ class CardsController < ApplicationController
 
   def create
     @card = @list.cards.build(card_params)
+    @cards = Card.where(list_id: @list.id)
 
-    if @card.save
-      # handle successful creation, maybe redirect somewhere
-    else
-      render :new
+   unless @card.save
+      head :unprocessable_entity
     end
   end
 
