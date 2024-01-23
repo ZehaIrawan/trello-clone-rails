@@ -6,9 +6,13 @@ class CardsController < ApplicationController
     @card = @list.cards.build(card_params)
     @cards = Card.where(list_id: @list.id)
 
-   unless @card.save
-      head :unprocessable_entity
-    end
+      respond_to do |format|
+        if @card.save
+          format.turbo_stream { render turbo_stream: turbo_stream.append(@list, partial: "cards/card", locals: { card: @card }) }
+        else
+          puts @card.errors.full_messages
+        end
+      end
   end
 
   private
